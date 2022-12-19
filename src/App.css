@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+}
+
+.Msg-box {
+  width: 800px;
+  margin: auto;
+}
+
+.ql-editor {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.ql-toolbar.ql-snow button.ql-markdown {
+  width: 100px;
+}
+
+.ql-toolbar.ql-snow button.ql-richText {
+  width: 100px;
+}
+
+.Msg-preview {
+  width: 800px;
+  margin: auto;
+  border: 1px solid;
+  text-align: left;
+}
+
+.Msg-preview-header {
+  background-color: lightgray;
+  border-bottom: 1px solid;
+}
+
+.Msg-preview-markdown {
+  height: 300px;
+  overflow-y: scroll;
+  background-color: white;
+}
