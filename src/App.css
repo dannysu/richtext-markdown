@@ -16,24 +16,34 @@
   width: 100px;
 }
 
-.ql-toolbar.ql-snow button.ql-richText {
+.ql-toolbar.ql-snow button.ql-richtext {
   width: 100px;
 }
 
-.Msg-preview {
-  width: 800px;
-  margin: auto;
-  border: 1px solid;
+.Msg-preview.ql-container {
+  margin-top: 5px;
   text-align: left;
 }
 
 .Msg-preview-header {
-  background-color: lightgray;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
 }
 
 .Msg-preview-markdown {
+  padding: 10px;
   height: 300px;
   overflow-y: scroll;
   background-color: white;
+}
+
+#textarea-container {
+  border-top: 1px solid #ccc;
+}
+
+.Msg-plaintext {
+  width: 794px;
+  resize: none;
+  border: 0px;
+  padding: 0px;
 }

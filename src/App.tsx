@@ -16,9 +16,11 @@ function App() {
   let preview = null;
   if (markdown) {
     preview = (
-      <div className="Msg-preview">
-        <div className="Msg-preview-header">Preview:</div>
-        <ReactMarkdown children={value} className="Msg-preview-markdown"></ReactMarkdown>
+      <div className="Msg-box">
+        <div className="Msg-preview ql-container ql-snow">
+          <div className="Msg-preview-header">Preview:</div>
+          <ReactMarkdown children={value} className="Msg-preview-markdown"></ReactMarkdown>
+        </div>
       </div>
     );
   }

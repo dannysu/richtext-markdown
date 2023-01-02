@@ -14,6 +14,8 @@ const formats = [
     'bullet',
 ];
 
+const MIN_TEXTAREA_HEIGHT = 32;
+
 const CustomToolbar = () => (
     <div id="toolbar">
         <span className="ql-formats">
@@ -38,7 +40,7 @@ const CustomToolbar = () => (
         </span>
         <span className="ql-formats">
             <button className="ql-markdown">
-                Markdown
+                🔁 Markdown
             </button>
         </span>
     </div>
@@ -69,6 +71,13 @@ class Editor extends React.Component<EditorProps, EditorState> {
             }
         }
     };
+    
+    textareaRef: React.RefObject<HTMLTextAreaElement>;
+
+    constructor(props: EditorProps) {
+        super(props);
+        this.textareaRef = React.createRef();
+    }
     
     handleChange(html: string) {
         this.setState({ editorHtml: html });
@@ -110,6 +119,16 @@ class Editor extends React.Component<EditorProps, EditorState> {
         this.props.onMarkdownStateChange(false);
     }
     
+    componentDidUpdate(prevProps: Readonly<EditorProps>, prevState: Readonly<EditorState>, snapshot?: any): void {
+        if (this.textareaRef.current) {
+        this.textareaRef.current.style.height = "inherit";
+        this.textareaRef.current.style.height = `${Math.max(
+            this.textareaRef.current.scrollHeight,
+            MIN_TEXTAREA_HEIGHT
+        )}px`; 
+        }
+    }
+    
     render() {
         const richText = (
             <div className="Msg-box">
@@ -125,9 +144,15 @@ class Editor extends React.Component<EditorProps, EditorState> {
         );
         
         const plainText = (
-            <div>
-                <button onClick={this.switchToRichText.bind(this)}>Rich Text</button><br/>
-                <textarea value={this.state.editorHtml} onChange={this.onTextAreaChange.bind(this)} className="Msg-box"></textarea>
+            <div className="Msg-box">
+                <div id="toolbar" className="ql-toolbar ql-snow">
+                    <span className="ql-formats">
+                        <button type="button" className="ql-richtext" onClick={this.switchToRichText.bind(this)}>🔁 Rich Text</button><br/>
+                    </span>
+                </div>
+                <div id="textarea-container" className="ql-container ql-snow">
+                    <textarea value={this.state.editorHtml} onChange={this.onTextAreaChange.bind(this)} className="Msg-plaintext" ref={this.textareaRef}></textarea>
+                </div>
             </div>
         );
         
